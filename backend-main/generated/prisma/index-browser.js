@@ -120,6 +120,22 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.AtendimentoScalarFieldEnum = {
+  id: 'id',
+  ticketZpro: 'ticketZpro',
+  ticketTomticket: 'ticketTomticket',
+  sincronizado: 'sincronizado',
+  clienteId: 'clienteId',
+  cnpj: 'cnpj',
+  atendente: 'atendente',
+  protocolo: 'protocolo',
+  nomeContato: 'nomeContato',
+  tipoAtendimento: 'tipoAtendimento',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.PlantonistasScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -173,6 +189,7 @@ exports.TypeUsers = exports.$Enums.TypeUsers = {
 };
 
 exports.Prisma.ModelName = {
+  Atendimento: 'Atendimento',
   Plantonistas: 'Plantonistas',
   Registros: 'Registros',
   User: 'User'

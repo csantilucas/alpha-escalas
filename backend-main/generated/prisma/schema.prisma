@@ -1,3 +1,22 @@
+model Atendimento {
+  id              String  @id @default(uuid())
+  ticketZpro      String? // ID/Código do Ticket ZPro
+  ticketTomticket String? // ID/Código do Ticket Tomticket
+  sincronizado    Boolean @default(false)
+  clienteId       String?
+  cnpj            String
+  atendente       String?
+  protocolo       String? @unique // Garante chave única para identificar o atendimento
+  nomeContato     String?
+  tipoAtendimento String?
+  status          String  @default("EM_ANDAMENTO") // Ex: EM_ANDAMENTO, FINALIZADO
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("atendimentos")
+}
+
 model Plantonistas {
   id           String    @id @default(uuid())
   nome         String

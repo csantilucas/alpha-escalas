@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model Atendimento
+ * 
+ */
+export type Atendimento = $Result.DefaultSelection<Prisma.$AtendimentoPayload>
+/**
  * Model Plantonistas
  * 
  */
@@ -56,8 +61,8 @@ export const TypeUsers: typeof $Enums.TypeUsers
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Plantonistas
- * const plantonistas = await prisma.plantonistas.findMany()
+ * // Fetch zero or more Atendimentos
+ * const atendimentos = await prisma.atendimento.findMany()
  * ```
  *
  *
@@ -79,8 +84,8 @@ export class PrismaClient<
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Plantonistas
-   * const plantonistas = await prisma.plantonistas.findMany()
+   * // Fetch zero or more Atendimentos
+   * const atendimentos = await prisma.atendimento.findMany()
    * ```
    *
    *
@@ -169,6 +174,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.atendimento`: Exposes CRUD operations for the **Atendimento** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Atendimentos
+    * const atendimentos = await prisma.atendimento.findMany()
+    * ```
+    */
+  get atendimento(): Prisma.AtendimentoDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.plantonistas`: Exposes CRUD operations for the **Plantonistas** model.
     * Example usage:
     * ```ts
@@ -631,6 +646,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    Atendimento: 'Atendimento',
     Plantonistas: 'Plantonistas',
     Registros: 'Registros',
     User: 'User'
@@ -649,10 +665,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "plantonistas" | "registros" | "user"
+      modelProps: "atendimento" | "plantonistas" | "registros" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      Atendimento: {
+        payload: Prisma.$AtendimentoPayload<ExtArgs>
+        fields: Prisma.AtendimentoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AtendimentoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AtendimentoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+          }
+          findFirst: {
+            args: Prisma.AtendimentoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AtendimentoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+          }
+          findMany: {
+            args: Prisma.AtendimentoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>[]
+          }
+          create: {
+            args: Prisma.AtendimentoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+          }
+          createMany: {
+            args: Prisma.AtendimentoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AtendimentoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>[]
+          }
+          delete: {
+            args: Prisma.AtendimentoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+          }
+          update: {
+            args: Prisma.AtendimentoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+          }
+          deleteMany: {
+            args: Prisma.AtendimentoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AtendimentoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AtendimentoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>[]
+          }
+          upsert: {
+            args: Prisma.AtendimentoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtendimentoPayload>
+          }
+          aggregate: {
+            args: Prisma.AtendimentoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAtendimento>
+          }
+          groupBy: {
+            args: Prisma.AtendimentoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AtendimentoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AtendimentoCountArgs<ExtArgs>
+            result: $Utils.Optional<AtendimentoCountAggregateOutputType> | number
+          }
+        }
+      }
       Plantonistas: {
         payload: Prisma.$PlantonistasPayload<ExtArgs>
         fields: Prisma.PlantonistasFieldRefs
@@ -983,6 +1073,7 @@ export namespace Prisma {
     comments?: runtime.SqlCommenterPlugin[]
   }
   export type GlobalOmitConfig = {
+    atendimento?: AtendimentoOmit
     plantonistas?: PlantonistasOmit
     registros?: RegistrosOmit
     user?: UserOmit
@@ -1126,6 +1217,1110 @@ export namespace Prisma {
   /**
    * Models
    */
+
+  /**
+   * Model Atendimento
+   */
+
+  export type AggregateAtendimento = {
+    _count: AtendimentoCountAggregateOutputType | null
+    _min: AtendimentoMinAggregateOutputType | null
+    _max: AtendimentoMaxAggregateOutputType | null
+  }
+
+  export type AtendimentoMinAggregateOutputType = {
+    id: string | null
+    ticketZpro: string | null
+    ticketTomticket: string | null
+    sincronizado: boolean | null
+    clienteId: string | null
+    cnpj: string | null
+    atendente: string | null
+    protocolo: string | null
+    nomeContato: string | null
+    tipoAtendimento: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AtendimentoMaxAggregateOutputType = {
+    id: string | null
+    ticketZpro: string | null
+    ticketTomticket: string | null
+    sincronizado: boolean | null
+    clienteId: string | null
+    cnpj: string | null
+    atendente: string | null
+    protocolo: string | null
+    nomeContato: string | null
+    tipoAtendimento: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AtendimentoCountAggregateOutputType = {
+    id: number
+    ticketZpro: number
+    ticketTomticket: number
+    sincronizado: number
+    clienteId: number
+    cnpj: number
+    atendente: number
+    protocolo: number
+    nomeContato: number
+    tipoAtendimento: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AtendimentoMinAggregateInputType = {
+    id?: true
+    ticketZpro?: true
+    ticketTomticket?: true
+    sincronizado?: true
+    clienteId?: true
+    cnpj?: true
+    atendente?: true
+    protocolo?: true
+    nomeContato?: true
+    tipoAtendimento?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AtendimentoMaxAggregateInputType = {
+    id?: true
+    ticketZpro?: true
+    ticketTomticket?: true
+    sincronizado?: true
+    clienteId?: true
+    cnpj?: true
+    atendente?: true
+    protocolo?: true
+    nomeContato?: true
+    tipoAtendimento?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AtendimentoCountAggregateInputType = {
+    id?: true
+    ticketZpro?: true
+    ticketTomticket?: true
+    sincronizado?: true
+    clienteId?: true
+    cnpj?: true
+    atendente?: true
+    protocolo?: true
+    nomeContato?: true
+    tipoAtendimento?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AtendimentoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Atendimento to aggregate.
+     */
+    where?: AtendimentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Atendimentos to fetch.
+     */
+    orderBy?: AtendimentoOrderByWithRelationInput | AtendimentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AtendimentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Atendimentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Atendimentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Atendimentos
+    **/
+    _count?: true | AtendimentoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AtendimentoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AtendimentoMaxAggregateInputType
+  }
+
+  export type GetAtendimentoAggregateType<T extends AtendimentoAggregateArgs> = {
+        [P in keyof T & keyof AggregateAtendimento]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAtendimento[P]>
+      : GetScalarType<T[P], AggregateAtendimento[P]>
+  }
+
+
+
+
+  export type AtendimentoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AtendimentoWhereInput
+    orderBy?: AtendimentoOrderByWithAggregationInput | AtendimentoOrderByWithAggregationInput[]
+    by: AtendimentoScalarFieldEnum[] | AtendimentoScalarFieldEnum
+    having?: AtendimentoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AtendimentoCountAggregateInputType | true
+    _min?: AtendimentoMinAggregateInputType
+    _max?: AtendimentoMaxAggregateInputType
+  }
+
+  export type AtendimentoGroupByOutputType = {
+    id: string
+    ticketZpro: string | null
+    ticketTomticket: string | null
+    sincronizado: boolean
+    clienteId: string | null
+    cnpj: string
+    atendente: string | null
+    protocolo: string | null
+    nomeContato: string | null
+    tipoAtendimento: string | null
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AtendimentoCountAggregateOutputType | null
+    _min: AtendimentoMinAggregateOutputType | null
+    _max: AtendimentoMaxAggregateOutputType | null
+  }
+
+  type GetAtendimentoGroupByPayload<T extends AtendimentoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AtendimentoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AtendimentoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AtendimentoGroupByOutputType[P]>
+            : GetScalarType<T[P], AtendimentoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AtendimentoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketZpro?: boolean
+    ticketTomticket?: boolean
+    sincronizado?: boolean
+    clienteId?: boolean
+    cnpj?: boolean
+    atendente?: boolean
+    protocolo?: boolean
+    nomeContato?: boolean
+    tipoAtendimento?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["atendimento"]>
+
+  export type AtendimentoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketZpro?: boolean
+    ticketTomticket?: boolean
+    sincronizado?: boolean
+    clienteId?: boolean
+    cnpj?: boolean
+    atendente?: boolean
+    protocolo?: boolean
+    nomeContato?: boolean
+    tipoAtendimento?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["atendimento"]>
+
+  export type AtendimentoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketZpro?: boolean
+    ticketTomticket?: boolean
+    sincronizado?: boolean
+    clienteId?: boolean
+    cnpj?: boolean
+    atendente?: boolean
+    protocolo?: boolean
+    nomeContato?: boolean
+    tipoAtendimento?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["atendimento"]>
+
+  export type AtendimentoSelectScalar = {
+    id?: boolean
+    ticketZpro?: boolean
+    ticketTomticket?: boolean
+    sincronizado?: boolean
+    clienteId?: boolean
+    cnpj?: boolean
+    atendente?: boolean
+    protocolo?: boolean
+    nomeContato?: boolean
+    tipoAtendimento?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AtendimentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticketZpro" | "ticketTomticket" | "sincronizado" | "clienteId" | "cnpj" | "atendente" | "protocolo" | "nomeContato" | "tipoAtendimento" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["atendimento"]>
+
+  export type $AtendimentoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Atendimento"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      ticketZpro: string | null
+      ticketTomticket: string | null
+      sincronizado: boolean
+      clienteId: string | null
+      cnpj: string
+      atendente: string | null
+      protocolo: string | null
+      nomeContato: string | null
+      tipoAtendimento: string | null
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["atendimento"]>
+    composites: {}
+  }
+
+  type AtendimentoGetPayload<S extends boolean | null | undefined | AtendimentoDefaultArgs> = $Result.GetResult<Prisma.$AtendimentoPayload, S>
+
+  type AtendimentoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AtendimentoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AtendimentoCountAggregateInputType | true
+    }
+
+  export interface AtendimentoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Atendimento'], meta: { name: 'Atendimento' } }
+    /**
+     * Find zero or one Atendimento that matches the filter.
+     * @param {AtendimentoFindUniqueArgs} args - Arguments to find a Atendimento
+     * @example
+     * // Get one Atendimento
+     * const atendimento = await prisma.atendimento.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AtendimentoFindUniqueArgs>(args: SelectSubset<T, AtendimentoFindUniqueArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Atendimento that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AtendimentoFindUniqueOrThrowArgs} args - Arguments to find a Atendimento
+     * @example
+     * // Get one Atendimento
+     * const atendimento = await prisma.atendimento.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AtendimentoFindUniqueOrThrowArgs>(args: SelectSubset<T, AtendimentoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Atendimento that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtendimentoFindFirstArgs} args - Arguments to find a Atendimento
+     * @example
+     * // Get one Atendimento
+     * const atendimento = await prisma.atendimento.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AtendimentoFindFirstArgs>(args?: SelectSubset<T, AtendimentoFindFirstArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Atendimento that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtendimentoFindFirstOrThrowArgs} args - Arguments to find a Atendimento
+     * @example
+     * // Get one Atendimento
+     * const atendimento = await prisma.atendimento.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AtendimentoFindFirstOrThrowArgs>(args?: SelectSubset<T, AtendimentoFindFirstOrThrowArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Atendimentos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtendimentoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Atendimentos
+     * const atendimentos = await prisma.atendimento.findMany()
+     * 
+     * // Get first 10 Atendimentos
+     * const atendimentos = await prisma.atendimento.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const atendimentoWithIdOnly = await prisma.atendimento.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AtendimentoFindManyArgs>(args?: SelectSubset<T, AtendimentoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Atendimento.
+     * @param {AtendimentoCreateArgs} args - Arguments to create a Atendimento.
+     * @example
+     * // Create one Atendimento
+     * const Atendimento = await prisma.atendimento.create({
+     *   data: {
+     *     // ... data to create a Atendimento
+     *   }
+     * })
+     * 
+     */
+    create<T extends AtendimentoCreateArgs>(args: SelectSubset<T, AtendimentoCreateArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Atendimentos.
+     * @param {AtendimentoCreateManyArgs} args - Arguments to create many Atendimentos.
+     * @example
+     * // Create many Atendimentos
+     * const atendimento = await prisma.atendimento.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AtendimentoCreateManyArgs>(args?: SelectSubset<T, AtendimentoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Atendimentos and returns the data saved in the database.
+     * @param {AtendimentoCreateManyAndReturnArgs} args - Arguments to create many Atendimentos.
+     * @example
+     * // Create many Atendimentos
+     * const atendimento = await prisma.atendimento.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Atendimentos and only return the `id`
+     * const atendimentoWithIdOnly = await prisma.atendimento.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AtendimentoCreateManyAndReturnArgs>(args?: SelectSubset<T, AtendimentoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Atendimento.
+     * @param {AtendimentoDeleteArgs} args - Arguments to delete one Atendimento.
+     * @example
+     * // Delete one Atendimento
+     * const Atendimento = await prisma.atendimento.delete({
+     *   where: {
+     *     // ... filter to delete one Atendimento
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AtendimentoDeleteArgs>(args: SelectSubset<T, AtendimentoDeleteArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Atendimento.
+     * @param {AtendimentoUpdateArgs} args - Arguments to update one Atendimento.
+     * @example
+     * // Update one Atendimento
+     * const atendimento = await prisma.atendimento.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AtendimentoUpdateArgs>(args: SelectSubset<T, AtendimentoUpdateArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Atendimentos.
+     * @param {AtendimentoDeleteManyArgs} args - Arguments to filter Atendimentos to delete.
+     * @example
+     * // Delete a few Atendimentos
+     * const { count } = await prisma.atendimento.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AtendimentoDeleteManyArgs>(args?: SelectSubset<T, AtendimentoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Atendimentos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtendimentoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Atendimentos
+     * const atendimento = await prisma.atendimento.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AtendimentoUpdateManyArgs>(args: SelectSubset<T, AtendimentoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Atendimentos and returns the data updated in the database.
+     * @param {AtendimentoUpdateManyAndReturnArgs} args - Arguments to update many Atendimentos.
+     * @example
+     * // Update many Atendimentos
+     * const atendimento = await prisma.atendimento.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Atendimentos and only return the `id`
+     * const atendimentoWithIdOnly = await prisma.atendimento.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AtendimentoUpdateManyAndReturnArgs>(args: SelectSubset<T, AtendimentoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Atendimento.
+     * @param {AtendimentoUpsertArgs} args - Arguments to update or create a Atendimento.
+     * @example
+     * // Update or create a Atendimento
+     * const atendimento = await prisma.atendimento.upsert({
+     *   create: {
+     *     // ... data to create a Atendimento
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Atendimento we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AtendimentoUpsertArgs>(args: SelectSubset<T, AtendimentoUpsertArgs<ExtArgs>>): Prisma__AtendimentoClient<$Result.GetResult<Prisma.$AtendimentoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Atendimentos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtendimentoCountArgs} args - Arguments to filter Atendimentos to count.
+     * @example
+     * // Count the number of Atendimentos
+     * const count = await prisma.atendimento.count({
+     *   where: {
+     *     // ... the filter for the Atendimentos we want to count
+     *   }
+     * })
+    **/
+    count<T extends AtendimentoCountArgs>(
+      args?: Subset<T, AtendimentoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AtendimentoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Atendimento.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtendimentoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AtendimentoAggregateArgs>(args: Subset<T, AtendimentoAggregateArgs>): Prisma.PrismaPromise<GetAtendimentoAggregateType<T>>
+
+    /**
+     * Group by Atendimento.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtendimentoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AtendimentoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AtendimentoGroupByArgs['orderBy'] }
+        : { orderBy?: AtendimentoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AtendimentoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAtendimentoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Atendimento model
+   */
+  readonly fields: AtendimentoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Atendimento.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AtendimentoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Atendimento model
+   */
+  interface AtendimentoFieldRefs {
+    readonly id: FieldRef<"Atendimento", 'String'>
+    readonly ticketZpro: FieldRef<"Atendimento", 'String'>
+    readonly ticketTomticket: FieldRef<"Atendimento", 'String'>
+    readonly sincronizado: FieldRef<"Atendimento", 'Boolean'>
+    readonly clienteId: FieldRef<"Atendimento", 'String'>
+    readonly cnpj: FieldRef<"Atendimento", 'String'>
+    readonly atendente: FieldRef<"Atendimento", 'String'>
+    readonly protocolo: FieldRef<"Atendimento", 'String'>
+    readonly nomeContato: FieldRef<"Atendimento", 'String'>
+    readonly tipoAtendimento: FieldRef<"Atendimento", 'String'>
+    readonly status: FieldRef<"Atendimento", 'String'>
+    readonly createdAt: FieldRef<"Atendimento", 'DateTime'>
+    readonly updatedAt: FieldRef<"Atendimento", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Atendimento findUnique
+   */
+  export type AtendimentoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * Filter, which Atendimento to fetch.
+     */
+    where: AtendimentoWhereUniqueInput
+  }
+
+  /**
+   * Atendimento findUniqueOrThrow
+   */
+  export type AtendimentoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * Filter, which Atendimento to fetch.
+     */
+    where: AtendimentoWhereUniqueInput
+  }
+
+  /**
+   * Atendimento findFirst
+   */
+  export type AtendimentoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * Filter, which Atendimento to fetch.
+     */
+    where?: AtendimentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Atendimentos to fetch.
+     */
+    orderBy?: AtendimentoOrderByWithRelationInput | AtendimentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Atendimentos.
+     */
+    cursor?: AtendimentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Atendimentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Atendimentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Atendimentos.
+     */
+    distinct?: AtendimentoScalarFieldEnum | AtendimentoScalarFieldEnum[]
+  }
+
+  /**
+   * Atendimento findFirstOrThrow
+   */
+  export type AtendimentoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * Filter, which Atendimento to fetch.
+     */
+    where?: AtendimentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Atendimentos to fetch.
+     */
+    orderBy?: AtendimentoOrderByWithRelationInput | AtendimentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Atendimentos.
+     */
+    cursor?: AtendimentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Atendimentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Atendimentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Atendimentos.
+     */
+    distinct?: AtendimentoScalarFieldEnum | AtendimentoScalarFieldEnum[]
+  }
+
+  /**
+   * Atendimento findMany
+   */
+  export type AtendimentoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * Filter, which Atendimentos to fetch.
+     */
+    where?: AtendimentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Atendimentos to fetch.
+     */
+    orderBy?: AtendimentoOrderByWithRelationInput | AtendimentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Atendimentos.
+     */
+    cursor?: AtendimentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Atendimentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Atendimentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Atendimentos.
+     */
+    distinct?: AtendimentoScalarFieldEnum | AtendimentoScalarFieldEnum[]
+  }
+
+  /**
+   * Atendimento create
+   */
+  export type AtendimentoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Atendimento.
+     */
+    data: XOR<AtendimentoCreateInput, AtendimentoUncheckedCreateInput>
+  }
+
+  /**
+   * Atendimento createMany
+   */
+  export type AtendimentoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Atendimentos.
+     */
+    data: AtendimentoCreateManyInput | AtendimentoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Atendimento createManyAndReturn
+   */
+  export type AtendimentoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * The data used to create many Atendimentos.
+     */
+    data: AtendimentoCreateManyInput | AtendimentoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Atendimento update
+   */
+  export type AtendimentoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Atendimento.
+     */
+    data: XOR<AtendimentoUpdateInput, AtendimentoUncheckedUpdateInput>
+    /**
+     * Choose, which Atendimento to update.
+     */
+    where: AtendimentoWhereUniqueInput
+  }
+
+  /**
+   * Atendimento updateMany
+   */
+  export type AtendimentoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Atendimentos.
+     */
+    data: XOR<AtendimentoUpdateManyMutationInput, AtendimentoUncheckedUpdateManyInput>
+    /**
+     * Filter which Atendimentos to update
+     */
+    where?: AtendimentoWhereInput
+    /**
+     * Limit how many Atendimentos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Atendimento updateManyAndReturn
+   */
+  export type AtendimentoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * The data used to update Atendimentos.
+     */
+    data: XOR<AtendimentoUpdateManyMutationInput, AtendimentoUncheckedUpdateManyInput>
+    /**
+     * Filter which Atendimentos to update
+     */
+    where?: AtendimentoWhereInput
+    /**
+     * Limit how many Atendimentos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Atendimento upsert
+   */
+  export type AtendimentoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Atendimento to update in case it exists.
+     */
+    where: AtendimentoWhereUniqueInput
+    /**
+     * In case the Atendimento found by the `where` argument doesn't exist, create a new Atendimento with this data.
+     */
+    create: XOR<AtendimentoCreateInput, AtendimentoUncheckedCreateInput>
+    /**
+     * In case the Atendimento was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AtendimentoUpdateInput, AtendimentoUncheckedUpdateInput>
+  }
+
+  /**
+   * Atendimento delete
+   */
+  export type AtendimentoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+    /**
+     * Filter which Atendimento to delete.
+     */
+    where: AtendimentoWhereUniqueInput
+  }
+
+  /**
+   * Atendimento deleteMany
+   */
+  export type AtendimentoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Atendimentos to delete
+     */
+    where?: AtendimentoWhereInput
+    /**
+     * Limit how many Atendimentos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Atendimento without action
+   */
+  export type AtendimentoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Atendimento
+     */
+    select?: AtendimentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Atendimento
+     */
+    omit?: AtendimentoOmit<ExtArgs> | null
+  }
+
 
   /**
    * Model Plantonistas
@@ -4541,6 +5736,25 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const AtendimentoScalarFieldEnum: {
+    id: 'id',
+    ticketZpro: 'ticketZpro',
+    ticketTomticket: 'ticketTomticket',
+    sincronizado: 'sincronizado',
+    clienteId: 'clienteId',
+    cnpj: 'cnpj',
+    atendente: 'atendente',
+    protocolo: 'protocolo',
+    nomeContato: 'nomeContato',
+    tipoAtendimento: 'tipoAtendimento',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AtendimentoScalarFieldEnum = (typeof AtendimentoScalarFieldEnum)[keyof typeof AtendimentoScalarFieldEnum]
+
+
   export const PlantonistasScalarFieldEnum: {
     id: 'id',
     nome: 'nome',
@@ -4626,16 +5840,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Boolean'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4650,6 +5857,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -4683,6 +5904,98 @@ export namespace Prisma {
    * Deep Input Types
    */
 
+
+  export type AtendimentoWhereInput = {
+    AND?: AtendimentoWhereInput | AtendimentoWhereInput[]
+    OR?: AtendimentoWhereInput[]
+    NOT?: AtendimentoWhereInput | AtendimentoWhereInput[]
+    id?: StringFilter<"Atendimento"> | string
+    ticketZpro?: StringNullableFilter<"Atendimento"> | string | null
+    ticketTomticket?: StringNullableFilter<"Atendimento"> | string | null
+    sincronizado?: BoolFilter<"Atendimento"> | boolean
+    clienteId?: StringNullableFilter<"Atendimento"> | string | null
+    cnpj?: StringFilter<"Atendimento"> | string
+    atendente?: StringNullableFilter<"Atendimento"> | string | null
+    protocolo?: StringNullableFilter<"Atendimento"> | string | null
+    nomeContato?: StringNullableFilter<"Atendimento"> | string | null
+    tipoAtendimento?: StringNullableFilter<"Atendimento"> | string | null
+    status?: StringFilter<"Atendimento"> | string
+    createdAt?: DateTimeFilter<"Atendimento"> | Date | string
+    updatedAt?: DateTimeFilter<"Atendimento"> | Date | string
+  }
+
+  export type AtendimentoOrderByWithRelationInput = {
+    id?: SortOrder
+    ticketZpro?: SortOrderInput | SortOrder
+    ticketTomticket?: SortOrderInput | SortOrder
+    sincronizado?: SortOrder
+    clienteId?: SortOrderInput | SortOrder
+    cnpj?: SortOrder
+    atendente?: SortOrderInput | SortOrder
+    protocolo?: SortOrderInput | SortOrder
+    nomeContato?: SortOrderInput | SortOrder
+    tipoAtendimento?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AtendimentoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    protocolo?: string
+    AND?: AtendimentoWhereInput | AtendimentoWhereInput[]
+    OR?: AtendimentoWhereInput[]
+    NOT?: AtendimentoWhereInput | AtendimentoWhereInput[]
+    ticketZpro?: StringNullableFilter<"Atendimento"> | string | null
+    ticketTomticket?: StringNullableFilter<"Atendimento"> | string | null
+    sincronizado?: BoolFilter<"Atendimento"> | boolean
+    clienteId?: StringNullableFilter<"Atendimento"> | string | null
+    cnpj?: StringFilter<"Atendimento"> | string
+    atendente?: StringNullableFilter<"Atendimento"> | string | null
+    nomeContato?: StringNullableFilter<"Atendimento"> | string | null
+    tipoAtendimento?: StringNullableFilter<"Atendimento"> | string | null
+    status?: StringFilter<"Atendimento"> | string
+    createdAt?: DateTimeFilter<"Atendimento"> | Date | string
+    updatedAt?: DateTimeFilter<"Atendimento"> | Date | string
+  }, "id" | "protocolo">
+
+  export type AtendimentoOrderByWithAggregationInput = {
+    id?: SortOrder
+    ticketZpro?: SortOrderInput | SortOrder
+    ticketTomticket?: SortOrderInput | SortOrder
+    sincronizado?: SortOrder
+    clienteId?: SortOrderInput | SortOrder
+    cnpj?: SortOrder
+    atendente?: SortOrderInput | SortOrder
+    protocolo?: SortOrderInput | SortOrder
+    nomeContato?: SortOrderInput | SortOrder
+    tipoAtendimento?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AtendimentoCountOrderByAggregateInput
+    _max?: AtendimentoMaxOrderByAggregateInput
+    _min?: AtendimentoMinOrderByAggregateInput
+  }
+
+  export type AtendimentoScalarWhereWithAggregatesInput = {
+    AND?: AtendimentoScalarWhereWithAggregatesInput | AtendimentoScalarWhereWithAggregatesInput[]
+    OR?: AtendimentoScalarWhereWithAggregatesInput[]
+    NOT?: AtendimentoScalarWhereWithAggregatesInput | AtendimentoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Atendimento"> | string
+    ticketZpro?: StringNullableWithAggregatesFilter<"Atendimento"> | string | null
+    ticketTomticket?: StringNullableWithAggregatesFilter<"Atendimento"> | string | null
+    sincronizado?: BoolWithAggregatesFilter<"Atendimento"> | boolean
+    clienteId?: StringNullableWithAggregatesFilter<"Atendimento"> | string | null
+    cnpj?: StringWithAggregatesFilter<"Atendimento"> | string
+    atendente?: StringNullableWithAggregatesFilter<"Atendimento"> | string | null
+    protocolo?: StringNullableWithAggregatesFilter<"Atendimento"> | string | null
+    nomeContato?: StringNullableWithAggregatesFilter<"Atendimento"> | string | null
+    tipoAtendimento?: StringNullableWithAggregatesFilter<"Atendimento"> | string | null
+    status?: StringWithAggregatesFilter<"Atendimento"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Atendimento"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Atendimento"> | Date | string
+  }
 
   export type PlantonistasWhereInput = {
     AND?: PlantonistasWhereInput | PlantonistasWhereInput[]
@@ -4898,6 +6211,118 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     id_atendente?: StringNullableWithAggregatesFilter<"User"> | string | null
     typeUser?: EnumTypeUsersWithAggregatesFilter<"User"> | $Enums.TypeUsers
+  }
+
+  export type AtendimentoCreateInput = {
+    id?: string
+    ticketZpro?: string | null
+    ticketTomticket?: string | null
+    sincronizado?: boolean
+    clienteId?: string | null
+    cnpj: string
+    atendente?: string | null
+    protocolo?: string | null
+    nomeContato?: string | null
+    tipoAtendimento?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AtendimentoUncheckedCreateInput = {
+    id?: string
+    ticketZpro?: string | null
+    ticketTomticket?: string | null
+    sincronizado?: boolean
+    clienteId?: string | null
+    cnpj: string
+    atendente?: string | null
+    protocolo?: string | null
+    nomeContato?: string | null
+    tipoAtendimento?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AtendimentoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ticketZpro?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketTomticket?: NullableStringFieldUpdateOperationsInput | string | null
+    sincronizado?: BoolFieldUpdateOperationsInput | boolean
+    clienteId?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: StringFieldUpdateOperationsInput | string
+    atendente?: NullableStringFieldUpdateOperationsInput | string | null
+    protocolo?: NullableStringFieldUpdateOperationsInput | string | null
+    nomeContato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoAtendimento?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtendimentoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ticketZpro?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketTomticket?: NullableStringFieldUpdateOperationsInput | string | null
+    sincronizado?: BoolFieldUpdateOperationsInput | boolean
+    clienteId?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: StringFieldUpdateOperationsInput | string
+    atendente?: NullableStringFieldUpdateOperationsInput | string | null
+    protocolo?: NullableStringFieldUpdateOperationsInput | string | null
+    nomeContato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoAtendimento?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtendimentoCreateManyInput = {
+    id?: string
+    ticketZpro?: string | null
+    ticketTomticket?: string | null
+    sincronizado?: boolean
+    clienteId?: string | null
+    cnpj: string
+    atendente?: string | null
+    protocolo?: string | null
+    nomeContato?: string | null
+    tipoAtendimento?: string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AtendimentoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ticketZpro?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketTomticket?: NullableStringFieldUpdateOperationsInput | string | null
+    sincronizado?: BoolFieldUpdateOperationsInput | boolean
+    clienteId?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: StringFieldUpdateOperationsInput | string
+    atendente?: NullableStringFieldUpdateOperationsInput | string | null
+    protocolo?: NullableStringFieldUpdateOperationsInput | string | null
+    nomeContato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoAtendimento?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtendimentoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ticketZpro?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketTomticket?: NullableStringFieldUpdateOperationsInput | string | null
+    sincronizado?: BoolFieldUpdateOperationsInput | boolean
+    clienteId?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: StringFieldUpdateOperationsInput | string
+    atendente?: NullableStringFieldUpdateOperationsInput | string | null
+    protocolo?: NullableStringFieldUpdateOperationsInput | string | null
+    nomeContato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipoAtendimento?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PlantonistasCreateInput = {
@@ -5148,6 +6573,148 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type AtendimentoCountOrderByAggregateInput = {
+    id?: SortOrder
+    ticketZpro?: SortOrder
+    ticketTomticket?: SortOrder
+    sincronizado?: SortOrder
+    clienteId?: SortOrder
+    cnpj?: SortOrder
+    atendente?: SortOrder
+    protocolo?: SortOrder
+    nomeContato?: SortOrder
+    tipoAtendimento?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AtendimentoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ticketZpro?: SortOrder
+    ticketTomticket?: SortOrder
+    sincronizado?: SortOrder
+    clienteId?: SortOrder
+    cnpj?: SortOrder
+    atendente?: SortOrder
+    protocolo?: SortOrder
+    nomeContato?: SortOrder
+    tipoAtendimento?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AtendimentoMinOrderByAggregateInput = {
+    id?: SortOrder
+    ticketZpro?: SortOrder
+    ticketTomticket?: SortOrder
+    sincronizado?: SortOrder
+    clienteId?: SortOrder
+    cnpj?: SortOrder
+    atendente?: SortOrder
+    protocolo?: SortOrder
+    nomeContato?: SortOrder
+    tipoAtendimento?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5170,17 +6737,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -5190,11 +6746,6 @@ export namespace Prisma {
     every?: RegistrosWhereInput
     some?: RegistrosWhereInput
     none?: RegistrosWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type RegistrosOrderByRelationAggregateInput = {
@@ -5239,24 +6790,6 @@ export namespace Prisma {
     posicao?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5285,20 +6818,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type PlantonistasScalarRelationFilter = {
@@ -5337,21 +6856,6 @@ export namespace Prisma {
     endTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type EnumTypeUsersFilter<$PrismaModel = never> = {
@@ -5399,24 +6903,6 @@ export namespace Prisma {
     typeUser?: SortOrder
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type EnumTypeUsersWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.TypeUsers | EnumTypeUsersFieldRefInput<$PrismaModel>
     in?: $Enums.TypeUsers[] | ListEnumTypeUsersFieldRefInput<$PrismaModel>
@@ -5425,6 +6911,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumTypeUsersFilter<$PrismaModel>
     _max?: NestedEnumTypeUsersFilter<$PrismaModel>
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type UserCreateNestedOneWithoutPlantaoInput = {
@@ -5447,10 +6949,6 @@ export namespace Prisma {
     connect?: RegistrosWhereUniqueInput | RegistrosWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -5461,10 +6959,6 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type UserUpdateOneRequiredWithoutPlantaoNestedInput = {
@@ -5557,10 +7051,6 @@ export namespace Prisma {
     connect?: RegistrosWhereUniqueInput | RegistrosWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type EnumTypeUsersFieldUpdateOperationsInput = {
     set?: $Enums.TypeUsers
   }
@@ -5627,26 +7117,23 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -5675,6 +7162,78 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -5718,67 +7277,11 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedEnumTypeUsersFilter<$PrismaModel = never> = {
     equals?: $Enums.TypeUsers | EnumTypeUsersFieldRefInput<$PrismaModel>
     in?: $Enums.TypeUsers[] | ListEnumTypeUsersFieldRefInput<$PrismaModel>
     notIn?: $Enums.TypeUsers[] | ListEnumTypeUsersFieldRefInput<$PrismaModel>
     not?: NestedEnumTypeUsersFilter<$PrismaModel> | $Enums.TypeUsers
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumTypeUsersWithAggregatesFilter<$PrismaModel = never> = {

@@ -7,7 +7,7 @@ const router = Router();
 const registroController = new RegistroController();
 
 
-router.get("/next", authMiddleware.auth, registroController.getNext);
+router.get("/next", registroController.getNext);
 router.get("/find", authMiddleware.auth, registroController.getAll);
 router.post("/", authMiddleware.auth, authMiddleware.authAdmin, registroController.create);
 router.patch("/change-user/:id", authMiddleware.auth, authMiddleware.authAdmin, registroController.changeUser);

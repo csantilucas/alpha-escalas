@@ -13,7 +13,7 @@ const nextConfig = {
   },
 
   // 🟢 Adiciona a permissão para o IP de rede e localhost não travarem o WebSocket/HMR
-  allowedDevOrigins: ['192.168.1.27', 'localhost:3000']
+  allowedOrigins: ['192.168.1.9:5004', 'localhost:5004', '192.168.1.9:5005'],
 };
 
 export default nextConfig;

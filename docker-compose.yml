@@ -22,15 +22,19 @@ services:
       context: ./backend-main
       dockerfile: Dockerfile
     container_name: alpha_backend
+    extra_hosts:
+      - "api.alphasoftware.com.br:192.168.1.101"
+      - "app.alphasoftware.com.br:192.168.1.101"
     restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "3001:5005"
+      - "0.0.0.0:5005:3001"
     environment:
       NODE_ENV: production
       PORT: 3001
+      HOST: 0.0.0.0
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -38,6 +42,8 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
       JWT_SECRET_ACCESS_TOKEN: ${JWT_SECRET_ACCESS_TOKEN}
       JWT_ACCESS_TOKEN_EXPIRATION: ${JWT_ACCESS_TOKEN_EXPIRATION:-15d}
+      RUN_SEED: ${RUN_SEED:-false}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://192.168.1.9:5004}
     networks:
       - alpha-net
 
@@ -46,13 +52,16 @@ services:
       context: ./front-end
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:5005}
     container_name: alpha_frontend
     restart: unless-stopped
     depends_on:
       - backend
     ports:
-      - "3000:5004"
+      - "0.0.0.0:5004:3000"
+    environment:
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
     networks:
       - alpha-net
 

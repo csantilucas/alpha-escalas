@@ -14,16 +14,28 @@ export class DashboardController {
         });
       }
 
-      // Consome o microsserviço externo
-      const dadosReport = await externalApiService.getTicketsPerUser(
-        startDate as string, 
-        endDate as string
-      );
+      // Consome o microsserviço externo com fallback de segurança
+      let dadosReport:any[] = [];
+      try {
+        dadosReport = await externalApiService.getTicketsPerUser(
+          startDate as string, 
+          endDate as string
+        );
+      } catch (externalError: any) {
+        console.warn(
+          "⚠️ [DashboardController] Microsserviço externo indisponível. Retornando fallback vazio para não travar a interface.",
+          externalError.message || externalError
+        );
+        // Retorna array ou objeto padrão esperado pelo front-end
+        dadosReport = [];
+      }
 
       return res.status(200).json(dadosReport);
     } catch (error: any) {
-      console.log(error)
-      return res.status(500).json({ error: error.message || "Erro interno ao processar métricas de chamados." });
+      console.error("[DashboardController Error]:", error);
+      return res.status(500).json({ 
+        error: error.message || "Erro interno ao processar métricas de chamados." 
+      });
     }
   };
 }

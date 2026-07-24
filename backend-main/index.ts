@@ -1,9 +1,10 @@
 import app, { bootstrap } from "./src/config/server.js";
 
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST ?? "0.0.0.0";
 
-app.listen(PORT, async () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(PORT, HOST, async () => {
+  console.log(`Servidor rodando em http://${HOST}:${PORT}`);
   try {
     await bootstrap();
     console.log("Conexão com o banco de dados estabelecida com sucesso.");

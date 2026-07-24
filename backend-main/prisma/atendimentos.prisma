@@ -1,0 +1,16 @@
+
+model Atendimentos {
+  id        String   @id @default(uuid())
+  ticket_id_zpro      String?
+  ticket_id_tomticket  String?       @default("")
+  sincronizado Boolean @default(false)
+  cliente_id  String
+  cnpj String?
+  tipo_atendimento String?
+  Atendente String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+}
+

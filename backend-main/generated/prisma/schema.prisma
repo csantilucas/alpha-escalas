@@ -1,0 +1,57 @@
+model Plantonistas {
+  id           String    @id @default(uuid())
+  nome         String
+  posicao      Int       @default(0)
+  proxima_data DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  registros Registros[]
+}
+
+model Registros {
+  id         String   @id @default(uuid())
+  plantao_id String
+  user_id    String
+  data       DateTime
+  startTime  DateTime
+  endTime    DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  plantao Plantonistas @relation(fields: [plantao_id], references: [id], onDelete: Cascade)
+  user    User         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js" // Corrigido para prisma-client-js
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  pass         String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  id_atendente String?       @unique
+  typeUser     TypeUsers     @default(atendente)
+  plantao      Plantonistas?
+  registros    Registros[]
+}
+
+enum TypeUsers {
+  atendente
+  admin
+  gestor
+}

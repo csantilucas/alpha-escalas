@@ -1,5 +1,5 @@
 import type { AtendimentoRepository, AtendimentoFilterQuery } from "../repository/atendimentoRepo.js";
-
+import type { DashboardMetricsQuery } from "../repository/atendimentoRepo.js";
 
 
 export interface CreateAtendimentoInput {
@@ -50,7 +50,20 @@ export class AtendimentoService {
 
     }
 
+    async getMetrics(filters: DashboardMetricsQuery) {
+  return await this.atendimentoRepo.getDashboardMetrics(filters);
+}
 
+async getAtendimentosPorAnalista(nomeAnalista: string, filters: AtendimentoFilterQuery) {
+  if (!nomeAnalista) {
+    throw new Error("O nome do analista é obrigatório.");
+  }
+
+  return await this.atendimentoRepo.findWithFilters({
+    ...filters,
+    atendente: nomeAnalista,
+  });
+}
 
     async createAtendimento(data: CreateAtendimentoInput) {
 
@@ -74,6 +87,8 @@ export class AtendimentoService {
 
         }
 
+
+        
 
 
         return await this.atendimentoRepo.create({

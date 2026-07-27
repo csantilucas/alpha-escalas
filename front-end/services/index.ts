@@ -3,9 +3,17 @@
 export { userService } from "./userService";
 export { plantonistaService } from "./plantonistaService";
 export { registroService } from "./registroService";
-export { dashboardService } from "./dashboardService"; // 🟢 Adicionado
+export { dashboardService } from "./dashboardService";
+export { atendimentoService } from "./atendimentoService";
 
-// Tipagens utilitárias para quando construir os formulários
+// Tipagens
 export type { LoginModel, CreateUserModel } from "./userService";
 export type { CreateRegistroModel, UpdateDatesModel, GerarEscalaModel } from "./registroService";
-export type { TicketUserData } from "./dashboardService"; // 🟢 Adicionado
+export type { TicketUserData } from "./dashboardService";
+export type {
+  AtendimentoModel,
+  AtendimentoPagination,
+  AtendimentoFilterParams,
+  AtendimentoListResponse,
+  DashboardMetricsResponse
+} from "./atendimentoService"; // 🟢

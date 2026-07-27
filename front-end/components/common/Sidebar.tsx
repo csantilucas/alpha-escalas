@@ -17,6 +17,7 @@ export function Sidebar() {
 
   const menuItems = [
     { label: "Dashboard", href: "/dashboard", show: true },
+    { label: "Atendimentos", href: "/atendimentos", show: true }, // 🟢 Novo item liberado para todos
     { label: "Plantonistas", href: "/plantonistas", show: isAdmin },
     { label: "Usuários", href: "/usuarios", show: isAdmin },
   ];
@@ -51,7 +52,7 @@ export function Sidebar() {
         )}
       >
         <div className="flex flex-col gap-6">
-          {/* Logo Minimalista (Ajustado padding para dar espaço ao botão fechar no mobile se necessário) */}
+          {/* Logo Minimalista */}
           <div className="px-2 pt-10 md:pt-0">
             <h1 className="text-base font-bold text-zinc-100 tracking-tight">Alpha Software</h1>
             <p className="text-xs text-zinc-500 mt-0.5">Escalas de atendimento</p>

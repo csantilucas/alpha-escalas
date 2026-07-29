@@ -4,7 +4,7 @@ model Atendimento {
   ticketTomticket  String?  // ID/Código do Ticket Tomticket
   sincronizado     Boolean @default(false)
   clienteId        String?
-  cnpj             String
+  cnpj             String?
   atendente        String?
   protocolo        String?  
   nomeContato      String?

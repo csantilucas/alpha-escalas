@@ -13,82 +13,76 @@ export interface AtendimentoFilterQuery {
   dataFim?: Date;
 }
 
-
-
 export interface DashboardMetricsQuery {
   atendente?: string;
   dataInicio?: Date;
   dataFim?: Date;
 }
 
-
-
-
-
 export class AtendimentoRepository extends BaseRepository<Atendimento> {
   constructor() {
     super(prisma.atendimento);
   }
 
-
   async getDashboardMetrics(filters: DashboardMetricsQuery) {
-  const where: Prisma.AtendimentoWhereInput = {};
+    const where: Prisma.AtendimentoWhereInput = {};
 
-  if (filters.atendente) {
-    where.atendente = { contains: filters.atendente, mode: "insensitive" };
-  }
+    if (filters.atendente) {
+      where.atendente = { contains: filters.atendente, mode: "insensitive" };
+    }
 
-  if (filters.dataInicio || filters.dataFim) {
-    where.createdAt = {};
-    if (filters.dataInicio) where.createdAt.gte = filters.dataInicio;
-    if (filters.dataFim) where.createdAt.lte = filters.dataFim;
-  }
+    if (filters.dataInicio || filters.dataFim) {
+      where.createdAt = {};
+      if (filters.dataInicio) where.createdAt.gte = filters.dataInicio;
+      if (filters.dataFim) where.createdAt.lte = filters.dataFim;
+    }
 
-  // Define início do dia de hoje para os "Registrados Hoje"
-  const startOfToday = new Date();
-  startOfToday.setHours(0, 0, 0, 0);
+    // Define início do dia de hoje para os "Registrados Hoje"
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
 
-  const whereHoje: Prisma.AtendimentoWhereInput = {
-    ...where,
-    createdAt: { gte: startOfToday },
-  };
+    const whereHoje: Prisma.AtendimentoWhereInput = {
+      ...where,
+      createdAt: { gte: startOfToday },
+    };
 
-  const [total, sincronizados, pendentes, criadosHoje, agrupadoPorAnalista] = await Promise.all([
-    prisma.atendimento.count({ where }),
-    prisma.atendimento.count({ where: { ...where, sincronizado: true } }),
-    prisma.atendimento.count({ where: { ...where, sincronizado: false } }),
-    prisma.atendimento.count({ where: whereHoje }),
-    prisma.atendimento.groupBy({
-      by: ["atendente"],
-      _count: {
-        id: true,
-      },
-      where,
-      orderBy: {
+    const [total, sincronizados, pendentes, criadosHoje, agrupadoPorAnalista] = await Promise.all([
+      prisma.atendimento.count({ where }),
+      prisma.atendimento.count({ where: { ...where, sincronizado: true } }),
+      prisma.atendimento.count({ where: { ...where, sincronizado: false } }),
+      prisma.atendimento.count({ where: whereHoje }),
+      prisma.atendimento.groupBy({
+        by: ["atendente"],
         _count: {
-          id: "desc",
+          id: true,
         },
+        where,
+        orderBy: {
+          _count: {
+            id: "desc",
+          },
+        },
+      }),
+    ]);
+
+    return {
+      metrics: {
+        total,
+        sincronizados,
+        pendentes,
+        criadosHoje,
+        taxaSincronizacao: total > 0 ? Math.round((sincronizados / total) * 100) : 0,
       },
-    }),
-  ]);
+      porAnalista: agrupadoPorAnalista.map((item) => ({
+        analista: item.atendente || "Não Atribuído",
+        totalAtendimentos: item._count.id,
+      })),
+    };
+  }
 
-  return {
-    metrics: {
-      total,
-      sincronizados,
-      pendentes,
-      criadosHoje,
-      taxaSincronizacao: total > 0 ? Math.round((sincronizados / total) * 100) : 0,
-    },
-    porAnalista: agrupadoPorAnalista.map((item) => ({
-      analista: item.atendente || "Não Atribuído",
-      totalAtendimentos: item._count.id,
-    })),
-  };
-}
-
+  // 🟢 CORRIGIDO: alterado de findUnique para findFirst
   async findByProtocolo(protocolo: string): Promise<Atendimento | null> {
-    return await prisma.atendimento.findUnique({
+    return await prisma.atendimento.findFirst({
       where: { protocolo },
     });
   }

@@ -6,7 +6,7 @@ model Atendimento {
   clienteId       String?
   cnpj            String
   atendente       String?
-  protocolo       String? @unique // Garante chave única para identificar o atendimento
+  protocolo       String?
   nomeContato     String?
   tipoAtendimento String?
   status          String  @default("EM_ANDAMENTO") // Ex: EM_ANDAMENTO, FINALIZADO
@@ -54,6 +54,20 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// prisma/schema.prisma
+
+model TomticketReportCache {
+  id        String   @id @default(uuid())
+  startDate String // Ex: "2026-07-01"
+  endDate   String // Ex: "2026-07-27"
+  data      Json // Salva o retorno completo (array de operadores e métricas)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([startDate, endDate]) // Garante um cache único por período
+  @@map("tomticket_report_caches")
 }
 
 model User {

@@ -157,6 +157,15 @@ exports.Prisma.RegistrosScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TomticketReportCacheScalarFieldEnum = {
+  id: 'id',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  data: 'data',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -173,6 +182,10 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -181,6 +194,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.TypeUsers = exports.$Enums.TypeUsers = {
   atendente: 'atendente',
@@ -192,6 +211,7 @@ exports.Prisma.ModelName = {
   Atendimento: 'Atendimento',
   Plantonistas: 'Plantonistas',
   Registros: 'Registros',
+  TomticketReportCache: 'TomticketReportCache',
   User: 'User'
 };
 

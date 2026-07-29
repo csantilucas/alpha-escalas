@@ -29,6 +29,11 @@ export type Plantonistas = $Result.DefaultSelection<Prisma.$PlantonistasPayload>
  */
 export type Registros = $Result.DefaultSelection<Prisma.$RegistrosPayload>
 /**
+ * Model TomticketReportCache
+ * 
+ */
+export type TomticketReportCache = $Result.DefaultSelection<Prisma.$TomticketReportCachePayload>
+/**
  * Model User
  * 
  */
@@ -202,6 +207,16 @@ export class PrismaClient<
     * ```
     */
   get registros(): Prisma.RegistrosDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tomticketReportCache`: Exposes CRUD operations for the **TomticketReportCache** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TomticketReportCaches
+    * const tomticketReportCaches = await prisma.tomticketReportCache.findMany()
+    * ```
+    */
+  get tomticketReportCache(): Prisma.TomticketReportCacheDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -649,6 +664,7 @@ export namespace Prisma {
     Atendimento: 'Atendimento',
     Plantonistas: 'Plantonistas',
     Registros: 'Registros',
+    TomticketReportCache: 'TomticketReportCache',
     User: 'User'
   };
 
@@ -665,7 +681,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "atendimento" | "plantonistas" | "registros" | "user"
+      modelProps: "atendimento" | "plantonistas" | "registros" | "tomticketReportCache" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -891,6 +907,80 @@ export namespace Prisma {
           }
         }
       }
+      TomticketReportCache: {
+        payload: Prisma.$TomticketReportCachePayload<ExtArgs>
+        fields: Prisma.TomticketReportCacheFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TomticketReportCacheFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TomticketReportCacheFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>
+          }
+          findFirst: {
+            args: Prisma.TomticketReportCacheFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TomticketReportCacheFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>
+          }
+          findMany: {
+            args: Prisma.TomticketReportCacheFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>[]
+          }
+          create: {
+            args: Prisma.TomticketReportCacheCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>
+          }
+          createMany: {
+            args: Prisma.TomticketReportCacheCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TomticketReportCacheCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>[]
+          }
+          delete: {
+            args: Prisma.TomticketReportCacheDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>
+          }
+          update: {
+            args: Prisma.TomticketReportCacheUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>
+          }
+          deleteMany: {
+            args: Prisma.TomticketReportCacheDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TomticketReportCacheUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TomticketReportCacheUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>[]
+          }
+          upsert: {
+            args: Prisma.TomticketReportCacheUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TomticketReportCachePayload>
+          }
+          aggregate: {
+            args: Prisma.TomticketReportCacheAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTomticketReportCache>
+          }
+          groupBy: {
+            args: Prisma.TomticketReportCacheGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TomticketReportCacheGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TomticketReportCacheCountArgs<ExtArgs>
+            result: $Utils.Optional<TomticketReportCacheCountAggregateOutputType> | number
+          }
+        }
+      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -1076,6 +1166,7 @@ export namespace Prisma {
     atendimento?: AtendimentoOmit
     plantonistas?: PlantonistasOmit
     registros?: RegistrosOmit
+    tomticketReportCache?: TomticketReportCacheOmit
     user?: UserOmit
   }
 
@@ -4586,6 +4677,1015 @@ export namespace Prisma {
 
 
   /**
+   * Model TomticketReportCache
+   */
+
+  export type AggregateTomticketReportCache = {
+    _count: TomticketReportCacheCountAggregateOutputType | null
+    _min: TomticketReportCacheMinAggregateOutputType | null
+    _max: TomticketReportCacheMaxAggregateOutputType | null
+  }
+
+  export type TomticketReportCacheMinAggregateOutputType = {
+    id: string | null
+    startDate: string | null
+    endDate: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TomticketReportCacheMaxAggregateOutputType = {
+    id: string | null
+    startDate: string | null
+    endDate: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TomticketReportCacheCountAggregateOutputType = {
+    id: number
+    startDate: number
+    endDate: number
+    data: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TomticketReportCacheMinAggregateInputType = {
+    id?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TomticketReportCacheMaxAggregateInputType = {
+    id?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TomticketReportCacheCountAggregateInputType = {
+    id?: true
+    startDate?: true
+    endDate?: true
+    data?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TomticketReportCacheAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TomticketReportCache to aggregate.
+     */
+    where?: TomticketReportCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TomticketReportCaches to fetch.
+     */
+    orderBy?: TomticketReportCacheOrderByWithRelationInput | TomticketReportCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TomticketReportCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TomticketReportCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TomticketReportCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TomticketReportCaches
+    **/
+    _count?: true | TomticketReportCacheCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TomticketReportCacheMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TomticketReportCacheMaxAggregateInputType
+  }
+
+  export type GetTomticketReportCacheAggregateType<T extends TomticketReportCacheAggregateArgs> = {
+        [P in keyof T & keyof AggregateTomticketReportCache]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTomticketReportCache[P]>
+      : GetScalarType<T[P], AggregateTomticketReportCache[P]>
+  }
+
+
+
+
+  export type TomticketReportCacheGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TomticketReportCacheWhereInput
+    orderBy?: TomticketReportCacheOrderByWithAggregationInput | TomticketReportCacheOrderByWithAggregationInput[]
+    by: TomticketReportCacheScalarFieldEnum[] | TomticketReportCacheScalarFieldEnum
+    having?: TomticketReportCacheScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TomticketReportCacheCountAggregateInputType | true
+    _min?: TomticketReportCacheMinAggregateInputType
+    _max?: TomticketReportCacheMaxAggregateInputType
+  }
+
+  export type TomticketReportCacheGroupByOutputType = {
+    id: string
+    startDate: string
+    endDate: string
+    data: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    _count: TomticketReportCacheCountAggregateOutputType | null
+    _min: TomticketReportCacheMinAggregateOutputType | null
+    _max: TomticketReportCacheMaxAggregateOutputType | null
+  }
+
+  type GetTomticketReportCacheGroupByPayload<T extends TomticketReportCacheGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TomticketReportCacheGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TomticketReportCacheGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TomticketReportCacheGroupByOutputType[P]>
+            : GetScalarType<T[P], TomticketReportCacheGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TomticketReportCacheSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    data?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tomticketReportCache"]>
+
+  export type TomticketReportCacheSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    data?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tomticketReportCache"]>
+
+  export type TomticketReportCacheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    data?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tomticketReportCache"]>
+
+  export type TomticketReportCacheSelectScalar = {
+    id?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    data?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TomticketReportCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startDate" | "endDate" | "data" | "createdAt" | "updatedAt", ExtArgs["result"]["tomticketReportCache"]>
+
+  export type $TomticketReportCachePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TomticketReportCache"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      startDate: string
+      endDate: string
+      data: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["tomticketReportCache"]>
+    composites: {}
+  }
+
+  type TomticketReportCacheGetPayload<S extends boolean | null | undefined | TomticketReportCacheDefaultArgs> = $Result.GetResult<Prisma.$TomticketReportCachePayload, S>
+
+  type TomticketReportCacheCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TomticketReportCacheFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TomticketReportCacheCountAggregateInputType | true
+    }
+
+  export interface TomticketReportCacheDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TomticketReportCache'], meta: { name: 'TomticketReportCache' } }
+    /**
+     * Find zero or one TomticketReportCache that matches the filter.
+     * @param {TomticketReportCacheFindUniqueArgs} args - Arguments to find a TomticketReportCache
+     * @example
+     * // Get one TomticketReportCache
+     * const tomticketReportCache = await prisma.tomticketReportCache.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TomticketReportCacheFindUniqueArgs>(args: SelectSubset<T, TomticketReportCacheFindUniqueArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TomticketReportCache that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TomticketReportCacheFindUniqueOrThrowArgs} args - Arguments to find a TomticketReportCache
+     * @example
+     * // Get one TomticketReportCache
+     * const tomticketReportCache = await prisma.tomticketReportCache.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TomticketReportCacheFindUniqueOrThrowArgs>(args: SelectSubset<T, TomticketReportCacheFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TomticketReportCache that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TomticketReportCacheFindFirstArgs} args - Arguments to find a TomticketReportCache
+     * @example
+     * // Get one TomticketReportCache
+     * const tomticketReportCache = await prisma.tomticketReportCache.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TomticketReportCacheFindFirstArgs>(args?: SelectSubset<T, TomticketReportCacheFindFirstArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TomticketReportCache that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TomticketReportCacheFindFirstOrThrowArgs} args - Arguments to find a TomticketReportCache
+     * @example
+     * // Get one TomticketReportCache
+     * const tomticketReportCache = await prisma.tomticketReportCache.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TomticketReportCacheFindFirstOrThrowArgs>(args?: SelectSubset<T, TomticketReportCacheFindFirstOrThrowArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TomticketReportCaches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TomticketReportCacheFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TomticketReportCaches
+     * const tomticketReportCaches = await prisma.tomticketReportCache.findMany()
+     * 
+     * // Get first 10 TomticketReportCaches
+     * const tomticketReportCaches = await prisma.tomticketReportCache.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tomticketReportCacheWithIdOnly = await prisma.tomticketReportCache.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TomticketReportCacheFindManyArgs>(args?: SelectSubset<T, TomticketReportCacheFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TomticketReportCache.
+     * @param {TomticketReportCacheCreateArgs} args - Arguments to create a TomticketReportCache.
+     * @example
+     * // Create one TomticketReportCache
+     * const TomticketReportCache = await prisma.tomticketReportCache.create({
+     *   data: {
+     *     // ... data to create a TomticketReportCache
+     *   }
+     * })
+     * 
+     */
+    create<T extends TomticketReportCacheCreateArgs>(args: SelectSubset<T, TomticketReportCacheCreateArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TomticketReportCaches.
+     * @param {TomticketReportCacheCreateManyArgs} args - Arguments to create many TomticketReportCaches.
+     * @example
+     * // Create many TomticketReportCaches
+     * const tomticketReportCache = await prisma.tomticketReportCache.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TomticketReportCacheCreateManyArgs>(args?: SelectSubset<T, TomticketReportCacheCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TomticketReportCaches and returns the data saved in the database.
+     * @param {TomticketReportCacheCreateManyAndReturnArgs} args - Arguments to create many TomticketReportCaches.
+     * @example
+     * // Create many TomticketReportCaches
+     * const tomticketReportCache = await prisma.tomticketReportCache.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TomticketReportCaches and only return the `id`
+     * const tomticketReportCacheWithIdOnly = await prisma.tomticketReportCache.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TomticketReportCacheCreateManyAndReturnArgs>(args?: SelectSubset<T, TomticketReportCacheCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TomticketReportCache.
+     * @param {TomticketReportCacheDeleteArgs} args - Arguments to delete one TomticketReportCache.
+     * @example
+     * // Delete one TomticketReportCache
+     * const TomticketReportCache = await prisma.tomticketReportCache.delete({
+     *   where: {
+     *     // ... filter to delete one TomticketReportCache
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TomticketReportCacheDeleteArgs>(args: SelectSubset<T, TomticketReportCacheDeleteArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TomticketReportCache.
+     * @param {TomticketReportCacheUpdateArgs} args - Arguments to update one TomticketReportCache.
+     * @example
+     * // Update one TomticketReportCache
+     * const tomticketReportCache = await prisma.tomticketReportCache.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TomticketReportCacheUpdateArgs>(args: SelectSubset<T, TomticketReportCacheUpdateArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TomticketReportCaches.
+     * @param {TomticketReportCacheDeleteManyArgs} args - Arguments to filter TomticketReportCaches to delete.
+     * @example
+     * // Delete a few TomticketReportCaches
+     * const { count } = await prisma.tomticketReportCache.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TomticketReportCacheDeleteManyArgs>(args?: SelectSubset<T, TomticketReportCacheDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TomticketReportCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TomticketReportCacheUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TomticketReportCaches
+     * const tomticketReportCache = await prisma.tomticketReportCache.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TomticketReportCacheUpdateManyArgs>(args: SelectSubset<T, TomticketReportCacheUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TomticketReportCaches and returns the data updated in the database.
+     * @param {TomticketReportCacheUpdateManyAndReturnArgs} args - Arguments to update many TomticketReportCaches.
+     * @example
+     * // Update many TomticketReportCaches
+     * const tomticketReportCache = await prisma.tomticketReportCache.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TomticketReportCaches and only return the `id`
+     * const tomticketReportCacheWithIdOnly = await prisma.tomticketReportCache.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TomticketReportCacheUpdateManyAndReturnArgs>(args: SelectSubset<T, TomticketReportCacheUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TomticketReportCache.
+     * @param {TomticketReportCacheUpsertArgs} args - Arguments to update or create a TomticketReportCache.
+     * @example
+     * // Update or create a TomticketReportCache
+     * const tomticketReportCache = await prisma.tomticketReportCache.upsert({
+     *   create: {
+     *     // ... data to create a TomticketReportCache
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TomticketReportCache we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TomticketReportCacheUpsertArgs>(args: SelectSubset<T, TomticketReportCacheUpsertArgs<ExtArgs>>): Prisma__TomticketReportCacheClient<$Result.GetResult<Prisma.$TomticketReportCachePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TomticketReportCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TomticketReportCacheCountArgs} args - Arguments to filter TomticketReportCaches to count.
+     * @example
+     * // Count the number of TomticketReportCaches
+     * const count = await prisma.tomticketReportCache.count({
+     *   where: {
+     *     // ... the filter for the TomticketReportCaches we want to count
+     *   }
+     * })
+    **/
+    count<T extends TomticketReportCacheCountArgs>(
+      args?: Subset<T, TomticketReportCacheCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TomticketReportCacheCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TomticketReportCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TomticketReportCacheAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TomticketReportCacheAggregateArgs>(args: Subset<T, TomticketReportCacheAggregateArgs>): Prisma.PrismaPromise<GetTomticketReportCacheAggregateType<T>>
+
+    /**
+     * Group by TomticketReportCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TomticketReportCacheGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TomticketReportCacheGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TomticketReportCacheGroupByArgs['orderBy'] }
+        : { orderBy?: TomticketReportCacheGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TomticketReportCacheGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTomticketReportCacheGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TomticketReportCache model
+   */
+  readonly fields: TomticketReportCacheFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TomticketReportCache.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TomticketReportCacheClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TomticketReportCache model
+   */
+  interface TomticketReportCacheFieldRefs {
+    readonly id: FieldRef<"TomticketReportCache", 'String'>
+    readonly startDate: FieldRef<"TomticketReportCache", 'String'>
+    readonly endDate: FieldRef<"TomticketReportCache", 'String'>
+    readonly data: FieldRef<"TomticketReportCache", 'Json'>
+    readonly createdAt: FieldRef<"TomticketReportCache", 'DateTime'>
+    readonly updatedAt: FieldRef<"TomticketReportCache", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TomticketReportCache findUnique
+   */
+  export type TomticketReportCacheFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which TomticketReportCache to fetch.
+     */
+    where: TomticketReportCacheWhereUniqueInput
+  }
+
+  /**
+   * TomticketReportCache findUniqueOrThrow
+   */
+  export type TomticketReportCacheFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which TomticketReportCache to fetch.
+     */
+    where: TomticketReportCacheWhereUniqueInput
+  }
+
+  /**
+   * TomticketReportCache findFirst
+   */
+  export type TomticketReportCacheFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which TomticketReportCache to fetch.
+     */
+    where?: TomticketReportCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TomticketReportCaches to fetch.
+     */
+    orderBy?: TomticketReportCacheOrderByWithRelationInput | TomticketReportCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TomticketReportCaches.
+     */
+    cursor?: TomticketReportCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TomticketReportCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TomticketReportCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TomticketReportCaches.
+     */
+    distinct?: TomticketReportCacheScalarFieldEnum | TomticketReportCacheScalarFieldEnum[]
+  }
+
+  /**
+   * TomticketReportCache findFirstOrThrow
+   */
+  export type TomticketReportCacheFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which TomticketReportCache to fetch.
+     */
+    where?: TomticketReportCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TomticketReportCaches to fetch.
+     */
+    orderBy?: TomticketReportCacheOrderByWithRelationInput | TomticketReportCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TomticketReportCaches.
+     */
+    cursor?: TomticketReportCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TomticketReportCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TomticketReportCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TomticketReportCaches.
+     */
+    distinct?: TomticketReportCacheScalarFieldEnum | TomticketReportCacheScalarFieldEnum[]
+  }
+
+  /**
+   * TomticketReportCache findMany
+   */
+  export type TomticketReportCacheFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which TomticketReportCaches to fetch.
+     */
+    where?: TomticketReportCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TomticketReportCaches to fetch.
+     */
+    orderBy?: TomticketReportCacheOrderByWithRelationInput | TomticketReportCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TomticketReportCaches.
+     */
+    cursor?: TomticketReportCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TomticketReportCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TomticketReportCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TomticketReportCaches.
+     */
+    distinct?: TomticketReportCacheScalarFieldEnum | TomticketReportCacheScalarFieldEnum[]
+  }
+
+  /**
+   * TomticketReportCache create
+   */
+  export type TomticketReportCacheCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TomticketReportCache.
+     */
+    data: XOR<TomticketReportCacheCreateInput, TomticketReportCacheUncheckedCreateInput>
+  }
+
+  /**
+   * TomticketReportCache createMany
+   */
+  export type TomticketReportCacheCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TomticketReportCaches.
+     */
+    data: TomticketReportCacheCreateManyInput | TomticketReportCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TomticketReportCache createManyAndReturn
+   */
+  export type TomticketReportCacheCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * The data used to create many TomticketReportCaches.
+     */
+    data: TomticketReportCacheCreateManyInput | TomticketReportCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TomticketReportCache update
+   */
+  export type TomticketReportCacheUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TomticketReportCache.
+     */
+    data: XOR<TomticketReportCacheUpdateInput, TomticketReportCacheUncheckedUpdateInput>
+    /**
+     * Choose, which TomticketReportCache to update.
+     */
+    where: TomticketReportCacheWhereUniqueInput
+  }
+
+  /**
+   * TomticketReportCache updateMany
+   */
+  export type TomticketReportCacheUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TomticketReportCaches.
+     */
+    data: XOR<TomticketReportCacheUpdateManyMutationInput, TomticketReportCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which TomticketReportCaches to update
+     */
+    where?: TomticketReportCacheWhereInput
+    /**
+     * Limit how many TomticketReportCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TomticketReportCache updateManyAndReturn
+   */
+  export type TomticketReportCacheUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * The data used to update TomticketReportCaches.
+     */
+    data: XOR<TomticketReportCacheUpdateManyMutationInput, TomticketReportCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which TomticketReportCaches to update
+     */
+    where?: TomticketReportCacheWhereInput
+    /**
+     * Limit how many TomticketReportCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TomticketReportCache upsert
+   */
+  export type TomticketReportCacheUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TomticketReportCache to update in case it exists.
+     */
+    where: TomticketReportCacheWhereUniqueInput
+    /**
+     * In case the TomticketReportCache found by the `where` argument doesn't exist, create a new TomticketReportCache with this data.
+     */
+    create: XOR<TomticketReportCacheCreateInput, TomticketReportCacheUncheckedCreateInput>
+    /**
+     * In case the TomticketReportCache was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TomticketReportCacheUpdateInput, TomticketReportCacheUncheckedUpdateInput>
+  }
+
+  /**
+   * TomticketReportCache delete
+   */
+  export type TomticketReportCacheDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+    /**
+     * Filter which TomticketReportCache to delete.
+     */
+    where: TomticketReportCacheWhereUniqueInput
+  }
+
+  /**
+   * TomticketReportCache deleteMany
+   */
+  export type TomticketReportCacheDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TomticketReportCaches to delete
+     */
+    where?: TomticketReportCacheWhereInput
+    /**
+     * Limit how many TomticketReportCaches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TomticketReportCache without action
+   */
+  export type TomticketReportCacheDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TomticketReportCache
+     */
+    select?: TomticketReportCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TomticketReportCache
+     */
+    omit?: TomticketReportCacheOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model User
    */
 
@@ -5782,6 +6882,18 @@ export namespace Prisma {
   export type RegistrosScalarFieldEnum = (typeof RegistrosScalarFieldEnum)[keyof typeof RegistrosScalarFieldEnum]
 
 
+  export const TomticketReportCacheScalarFieldEnum: {
+    id: 'id',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    data: 'data',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TomticketReportCacheScalarFieldEnum = (typeof TomticketReportCacheScalarFieldEnum)[keyof typeof TomticketReportCacheScalarFieldEnum]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -5804,6 +6916,13 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -5818,6 +6937,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -5871,6 +6999,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -5942,7 +7084,6 @@ export namespace Prisma {
 
   export type AtendimentoWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    protocolo?: string
     AND?: AtendimentoWhereInput | AtendimentoWhereInput[]
     OR?: AtendimentoWhereInput[]
     NOT?: AtendimentoWhereInput | AtendimentoWhereInput[]
@@ -5952,12 +7093,13 @@ export namespace Prisma {
     clienteId?: StringNullableFilter<"Atendimento"> | string | null
     cnpj?: StringFilter<"Atendimento"> | string
     atendente?: StringNullableFilter<"Atendimento"> | string | null
+    protocolo?: StringNullableFilter<"Atendimento"> | string | null
     nomeContato?: StringNullableFilter<"Atendimento"> | string | null
     tipoAtendimento?: StringNullableFilter<"Atendimento"> | string | null
     status?: StringFilter<"Atendimento"> | string
     createdAt?: DateTimeFilter<"Atendimento"> | Date | string
     updatedAt?: DateTimeFilter<"Atendimento"> | Date | string
-  }, "id" | "protocolo">
+  }, "id">
 
   export type AtendimentoOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6138,6 +7280,64 @@ export namespace Prisma {
     endTime?: DateTimeWithAggregatesFilter<"Registros"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Registros"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Registros"> | Date | string
+  }
+
+  export type TomticketReportCacheWhereInput = {
+    AND?: TomticketReportCacheWhereInput | TomticketReportCacheWhereInput[]
+    OR?: TomticketReportCacheWhereInput[]
+    NOT?: TomticketReportCacheWhereInput | TomticketReportCacheWhereInput[]
+    id?: StringFilter<"TomticketReportCache"> | string
+    startDate?: StringFilter<"TomticketReportCache"> | string
+    endDate?: StringFilter<"TomticketReportCache"> | string
+    data?: JsonFilter<"TomticketReportCache">
+    createdAt?: DateTimeFilter<"TomticketReportCache"> | Date | string
+    updatedAt?: DateTimeFilter<"TomticketReportCache"> | Date | string
+  }
+
+  export type TomticketReportCacheOrderByWithRelationInput = {
+    id?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    data?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TomticketReportCacheWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    startDate_endDate?: TomticketReportCacheStartDateEndDateCompoundUniqueInput
+    AND?: TomticketReportCacheWhereInput | TomticketReportCacheWhereInput[]
+    OR?: TomticketReportCacheWhereInput[]
+    NOT?: TomticketReportCacheWhereInput | TomticketReportCacheWhereInput[]
+    startDate?: StringFilter<"TomticketReportCache"> | string
+    endDate?: StringFilter<"TomticketReportCache"> | string
+    data?: JsonFilter<"TomticketReportCache">
+    createdAt?: DateTimeFilter<"TomticketReportCache"> | Date | string
+    updatedAt?: DateTimeFilter<"TomticketReportCache"> | Date | string
+  }, "id" | "startDate_endDate">
+
+  export type TomticketReportCacheOrderByWithAggregationInput = {
+    id?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    data?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TomticketReportCacheCountOrderByAggregateInput
+    _max?: TomticketReportCacheMaxOrderByAggregateInput
+    _min?: TomticketReportCacheMinOrderByAggregateInput
+  }
+
+  export type TomticketReportCacheScalarWhereWithAggregatesInput = {
+    AND?: TomticketReportCacheScalarWhereWithAggregatesInput | TomticketReportCacheScalarWhereWithAggregatesInput[]
+    OR?: TomticketReportCacheScalarWhereWithAggregatesInput[]
+    NOT?: TomticketReportCacheScalarWhereWithAggregatesInput | TomticketReportCacheScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TomticketReportCache"> | string
+    startDate?: StringWithAggregatesFilter<"TomticketReportCache"> | string
+    endDate?: StringWithAggregatesFilter<"TomticketReportCache"> | string
+    data?: JsonWithAggregatesFilter<"TomticketReportCache">
+    createdAt?: DateTimeWithAggregatesFilter<"TomticketReportCache"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TomticketReportCache"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -6469,6 +7669,69 @@ export namespace Prisma {
     data?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TomticketReportCacheCreateInput = {
+    id?: string
+    startDate: string
+    endDate: string
+    data: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TomticketReportCacheUncheckedCreateInput = {
+    id?: string
+    startDate: string
+    endDate: string
+    data: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TomticketReportCacheUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TomticketReportCacheUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TomticketReportCacheCreateManyInput = {
+    id?: string
+    startDate: string
+    endDate: string
+    data: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TomticketReportCacheUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TomticketReportCacheUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startDate?: StringFieldUpdateOperationsInput | string
+    endDate?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6856,6 +8119,85 @@ export namespace Prisma {
     endTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type TomticketReportCacheStartDateEndDateCompoundUniqueInput = {
+    startDate: string
+    endDate: string
+  }
+
+  export type TomticketReportCacheCountOrderByAggregateInput = {
+    id?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    data?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TomticketReportCacheMaxOrderByAggregateInput = {
+    id?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TomticketReportCacheMinOrderByAggregateInput = {
+    id?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type EnumTypeUsersFilter<$PrismaModel = never> = {
@@ -7275,6 +8617,29 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedEnumTypeUsersFilter<$PrismaModel = never> = {
